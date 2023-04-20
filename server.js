@@ -19,10 +19,13 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'transaction-dashboard')));
 
-app.get('/tests-page/transaction-dashboard-tests.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'transaction-dashboard', 'test-page', 'transaction-dashboard-tests.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Public', 'index.html'));
 });
 
+app.get('/tests-page/transaction-dashboard-tests.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'transaction-dashboard', 'tests-page', 'transaction-dashboard-tests.html'));
+});
 
 app.post('/execute', (req, res) => {
   // You can remove this endpoint if you don't need server-side code execution
