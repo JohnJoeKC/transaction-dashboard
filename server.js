@@ -13,18 +13,13 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use(express.static(path.join(__dirname, 'Public')));
 app.use('/Images', express.static('Images'));
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'transaction-dashboard')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'Public', 'index.html'));
-});
-
 app.get('/tests-page/transaction-dashboard-tests.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'transaction-dashboard', 'tests-page', 'transaction-dashboard-tests.html'));
+  res.sendFile(path.join(__dirname, 'transaction-dashboard', 'test-page', 'transaction-dashboard-tests.html'));
 });
 
 app.post('/execute', (req, res) => {
@@ -65,10 +60,10 @@ app.post('/openai', async (req, res) => {
   }
 });
 
-app.use(express.static(path.join(__dirname, 'Public')));
+app.use(express.static(path.join(__dirname)));
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'Public', '404.html'));
+  res.status(404).sendFile(path.join(__dirname, '404.html'));
 });
 
 const PORT = process.env.PORT || 3000;
